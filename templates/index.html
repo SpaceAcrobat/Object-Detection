@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AI Vision Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/static/css/style.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>👁️ AI Vision Lab</h1>
+      <p>Upload an image and let AI highlight the objects inside it.</p>
+      <div id="dropArea" class="dropzone">
+        <input id="imageInput" type="file" hidden accept="image/*" />
+        <p id="uploaderText">📂 Drag & Drop or <span class="browse">Browse</span></p>
+      </div>
+      <button id="detectBtn" disabled>🚀 Run Detection</button>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="workspace">
+    <div class="panel">
+      <h2>Original</h2>
+      <img id="preview" alt="Preview will appear here" />
+    </div>
+    <div class="panel">
+      <h2>Result</h2>
+      <div class="result-wrapper">
+        <div id="loader" class="loader hidden">
+          <div class="spinner"></div>
+          <span>Analyzing...</span>
+        </div>
+        <img id="result" alt="Detection result will appear here" />
+      </div>
+      <div class="actions">
+        <button id="downloadBtn" disabled>⬇️ Download</button>
+        <span id="statusText">Waiting for input...</span>
+      </div>  
+      
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <small>⚡ Built with AI • <a href="https://github.com/your-repo" target="_blank">GitHub</a></small>
+    <button id="themeToggle" class="theme-btn">🌙</button>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
