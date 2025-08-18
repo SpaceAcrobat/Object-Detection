@@ -2,54 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>AI Vision Lab</title>
+  <title>VisionCraft — Real-Time Object Detection Studio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Turn any image or live camera feed into instant object insights. Upload, detect, and analyze with YOLOv5—right in your browser." />
+  <meta name="color-scheme" content="dark light" />
+  <meta property="og:title" content="VisionCraft — Real-Time Object Detection Studio" />
+  <meta property="og:description" content="Upload or use your webcam to detect objects in seconds. Fast, accurate, and simple." />
+  <link rel="icon" href="data:,">
   <link href="/static/css/style.css" rel="stylesheet" />
 </head>
 <body>
-  <!-- Header -->
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="brand">
+      <span class="logo">✨</span>
+      <span>VisionCraft</span>
+    </div>
+    <div class="nav-cta">
+      <a href="https://github.com/your-repo" target="_blank" rel="noreferrer noopener" class="ghost">GitHub</a>
+      <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
   <header class="hero">
     <div class="hero-inner">
-      <h1>👁️ AI Vision Lab</h1>
-      <p>Upload an image and let AI highlight the objects inside it.</p>
-      <div id="dropArea" class="dropzone">
-        <input id="imageInput" type="file" hidden accept="image/*" />
-        <p id="uploaderText">📂 Drag & Drop or <span class="browse">Browse</span></p>
+      <h1>See your images <em>understand</em> themselves.</h1>
+      <p class="sub">
+        Turn any image or live camera feed into instant object insights.
+        Fast, accurate, and private—powered by YOLOv5 on your backend.
+      </p>
+
+      <div class="hero-ctas">
+        <button id="detectBtn" disabled title="Detect objects in your uploaded image">🚀 Detect Objects</button>
+        <button id="startWebcamBtn" title="Run live detection from your camera">🎥 Live Camera Mode</button>
+        <button id="stopWebcamBtn" class="hidden">⏹ Stop</button>
       </div>
-      <button id="detectBtn" disabled>🚀 Run Detection</button>
+
+      <!-- Uploader -->
+      <div id="dropArea" class="dropzone" role="button" tabindex="0" aria-label="Upload image">
+        <input id="imageInput" type="file" hidden accept="image/*" />
+        <p id="uploaderText">📁 Drop your image here or <span class="browse">Browse</span></p>
+      </div>
+
+      <!-- Social proof / small trust row -->
+      <div class="trust">
+        <span>Built with</span>
+        <ul>
+          <li>YOLOv5</li><li>Flask</li><li>OpenCV</li><li>PyTorch</li>
+        </ul>
+      </div>
     </div>
   </header>
 
-  <!-- Main Workspace -->
-  <main class="workspace">
-    <div class="panel">
-      <h2>Original</h2>
-      <img id="preview" alt="Preview will appear here" />
-    </div>
-    <div class="panel">
-      <h2>Result</h2>
-      <div class="result-wrapper">
-        <div id="loader" class="loader hidden">
-          <div class="spinner"></div>
-          <span>Analyzing...</span>
-        </div>
-        <img id="result" alt="Detection result will appear here" />
+  <!-- APP WORKSPACE -->
+  <main class="workspace" aria-live="polite">
+    <section class="panel" aria-labelledby="input-heading">
+      <div class="panel-head">
+        <h2 id="input-heading">Input</h2>
+        <p class="muted">Upload an image or switch to Live Camera Mode.</p>
       </div>
-      <div class="actions">
-        <button id="downloadBtn" disabled>⬇️ Download</button>
-        <span id="statusText">Waiting for input...</span>
-      </div>  
-      
-    </div>
 
+      <img id="preview" alt="Selected image preview" />
+      <video id="webcam" autoplay playsinline class="hidden" aria-label="Webcam preview"></video>
+
+      <div class="metrics">
+        <div class="metric"><span id="fps">—</span><label>FPS</label></div>
+        <div class="metric"><span id="latency">—</span><label>Latency</label></div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="result-heading">
+      <div class="panel-head">
+        <h2 id="result-heading">AI Detection Result</h2>
+        <p class="muted">Objects highlighted with confidence scores.</p>
+      </div>
+
+      <div class="result-wrapper">
+        <div id="loader" class="loader hidden" role="status" aria-live="assertive">
+          <div class="spinner" aria-hidden="true"></div>
+          <span>Analyzing…</span>
+        </div>
+        <img id="result" alt="Detection result" />
+      </div>
+
+      <div class="actions">
+        <button id="downloadBtn" disabled aria-disabled="true" title="Save the annotated result">⬇️ Download Result</button>
+        <span id="statusText" class="status">Waiting for input…</span>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <small>⚡ Built with AI • <a href="https://github.com/your-repo" target="_blank">GitHub</a></small>
-    <button id="themeToggle" class="theme-btn">🌙</button>
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feature">
+      <h3>Simple by design</h3>
+      <p>Drag & drop to get results in seconds. Clear actions, zero clutter.</p>
+    </div>
+    <div class="feature">
+      <h3>Fast feedback</h3>
+      <p>Live FPS & latency counters help you tune performance instantly.</p>
+    </div>
+    <div class="feature">
+      <h3>Private by default</h3>
+      <p>Your files are processed on your server and never shared externally.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <small>⚡ Powered by YOLOv5 • Built with Flask & OpenCV • <a href="https://github.com/your-repo" target="_blank" rel="noreferrer noopener">GitHub</a></small>
   </footer>
 
+  <div id="toasts"></div>
   <script src="/static/js/app.js"></script>
 </body>
 </html>
