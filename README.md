@@ -1,4 +1,4 @@
-# VisionCraft – Real-Time Object Detection Studio
+ VisionCraft – Real-Time Object Detection Studio
 
 **See your images *understand* themselves.**
 
@@ -6,7 +6,7 @@ VisionCraft lets you upload images or use your webcam for instant, privacy-first
 
 ---
 
-##  Features
+#  Features
 -  Upload image or start webcam for interactive detection
 -  Live FPS & latency monitoring
 -  Clean, responsive interface with dark/light mode
@@ -14,16 +14,16 @@ VisionCraft lets you upload images or use your webcam for instant, privacy-first
 
 ---
 
-##  Demo & Screenshots
+#  Demo & Screenshots
 *(Insert GIF or screenshots here)*
 
 ---
 
-##  Setup & Run
+#  Setup & Run
 ```bash
-git clone https://github.com/YourUser/VisionCraft.git
+git clone https://github.com/SpaceAcrobat/Object-Detection/.git
 cd VisionCraft
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python app.py
-# Visit http://localhost:5000
+
